@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const basePath = process.env.PAGES_BASE_PATH || (process.env.GITHUB_PAGES === "true" ? "/milo-hart-profile" : "");
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  ...(isGitHubPages ? { basePath: "/milo-hart-profile" } : {}),
+  ...(basePath ? { basePath } : {}),
 };
 
 export default nextConfig;
